@@ -10,6 +10,9 @@ function createWindow () {
     height: 400, 
     frame: false, 
     transparent: true,
+    webPreferences: {
+      nodeIntegration: true
+  }
   })
   mainWindow.setResizable(false)
   mainWindow.webContents.openDevTools()
@@ -28,6 +31,7 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
     app.quit()
 })
+
 
 
 
