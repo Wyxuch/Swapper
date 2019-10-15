@@ -1,8 +1,11 @@
 {
-    "name"    : "swapper",
-    "version" : "0.1.0",
-    "main"    : "main.js",
+    "name": "swapper",
+    "version": "0.1.0",
+    "main": "main.js",
     "scripts": {
         "start": "electron ."
-      }
+    },
+    "dependencies": {
+        "jquery": "^3.4.1"
+    }
 }
