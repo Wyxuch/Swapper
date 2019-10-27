@@ -11,15 +11,16 @@
 <body>
     <div class='mainScreen'>
         <div class='logo'>swapper</div>
-        <div class='Button minimizeButton'><p>_</p></div>
+        <div class='Button minimizeButton'><p>-</p></div>
         <div class='Button exitButton'><p>x</p></div>
-        <div class='Button extensionButton'><p>Extension</p></div>
-        <div class='Button pathButton'><p>Path</p></div>
-        <div class='path'></div>
-        <div class='Button binaryDescription1'><p>Origin<br>binary</p></div>
-        <div class='Text originBinary'></div>
-        <div class='Button binaryDescription2'><p>New<br>binary</p></div>
-        <textarea class='Text newBinary'></textarea>
+        <input type="text" placeholder="Extension" class='Button extensionInput'></input>
+        <label for="choosePath" class='Button pathButton'><p>Path</p></label>
+        <input type="file" id="choosePath" webkitdirectory directory class='path'></input>
+        <div class='Text files'></div>
+        <div class='Button binaryDescription1'><p>Change from: (uint8 string)</p></div>
+        <textarea class='Text binaryPrevious'></textarea>
+        <div class='Button binaryDescription2'><p>Change to: (uint8 string)</p></div>
+        <textarea class='Text binaryChanged'></textarea>
         <div class='Button saveButton'><p>Save</p></div>
     </div>
 </body>
