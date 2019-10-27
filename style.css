@@ -77,7 +77,11 @@ input:focus::placeholder{
     transition-timing-function: ease-out;
     background-color: #CFC7EE;
 }
-.binaryDescription:hover{
+.binaryDescription1:hover{
+    background-color: #A893FF;
+}
+
+.binaryDescription2:hover{
     background-color: #A893FF;
 }
 
