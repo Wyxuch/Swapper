@@ -15,7 +15,7 @@ function createWindow () {
   }
   })
   mainWindow.setResizable(false)
-  mainWindow.webContents.openDevTools()
+
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
   mainWindow.on('closed', function () {
@@ -26,6 +26,8 @@ function createWindow () {
     e.preventDefault()
   })
 }
+
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 app.on('ready', createWindow)
 app.on('window-all-closed', function () {
