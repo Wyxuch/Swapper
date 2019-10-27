@@ -6,6 +6,8 @@
         "start": "electron ."
     },
     "dependencies": {
+        "buffer-splice": "^1.0.0",
+        "glob": "^7.1.5",
         "jquery": "^3.4.1"
     }
 }
