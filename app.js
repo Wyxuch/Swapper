@@ -75,24 +75,21 @@ function convertFiles(filePath){
 function getInput(data, filePath){
     const sequenceToChangeFrom = $('.binaryPrevious').val().replace(/\s/g, '')
     const sequenceToChangeTo = $('.binaryChanged').val().replace(/\s/g, '')
-    console.log(sequenceToChangeFrom)
-    console.log(sequenceToChangeTo)
 
     const fromSequence = changeToUint8(sequenceToChangeFrom)
     const toSequence = changeToUint8(sequenceToChangeTo)
-    console.log(fromSequence)
-    console.log(toSequence)
 
     findSequence(data, fromSequence, toSequence, filePath)
 }
 
 function findSequence(initialData, fromSequence, toSequence, filePath){
-    for(let i = 0; i < initialData.length; i++){
-        if (fromSequence[0] == initialData[i]){
+    let convertedFile =  initialData
+    for(let i = 0; i < convertedFile.length; i++){
+        if (fromSequence[0] == convertedFile[i]){
             for(let j = 0; j < fromSequence.length; j++){
-                if (fromSequence[j] == initialData[i+j]){
-                    if ((j + 1) == fromSequence.length && fromSequence[j] == initialData[i+j]){
-                        foundFullSequence(initialData, fromSequence, toSequence, i, filePath)
+                if (fromSequence[j] == convertedFile[i+j]){
+                    if ((j + 1) == fromSequence.length && fromSequence[j] == convertedFile[i+j]){
+                        convertedFile = foundFullSequence(convertedFile, fromSequence, toSequence, i, filePath)
                     }
                 }
                 else{
@@ -100,10 +97,10 @@ function findSequence(initialData, fromSequence, toSequence, filePath){
                 }
             }
         }
-        else{
-            continue
-        }
     }
+    fs.writeFile(filePath, convertedFile, (err) =>{
+        if(err){console.log(err)}
+    })
 }
 
 function foundFullSequence(initialData, fromSequence, toSequence, i, filePath){
@@ -111,26 +108,14 @@ function foundFullSequence(initialData, fromSequence, toSequence, i, filePath){
     const compareLengths = fromSequence.length - toSequence.length //number of elements comparison 
         if((compareLengths)){ //check if number of elements has changed
             if(compareLengths > 0){ //more elements
-                const convertedFile = splice(initialData, start, (toSequence.length + compareLengths), new Buffer(toSequence))
                 i - compareLengths;
-                fs.writeFile(filePath, convertedFile, (err) =>{
-                    if(err) throw err;
-                    console.log(err)
-                })
+                return splice(initialData, start, (toSequence.length + compareLengths), new Buffer(toSequence))
             }else{ //less elements
-                const convertedFile = splice(initialData, start, (toSequence.length - compareLengths), new Buffer(toSequence))
                 i + compareLengths
-                fs.writeFile(filePath, convertedFile, (err) =>{
-                    if(err) throw err;
-                    console.log(err)
-                })
+                return splice(initialData, start, (toSequence.length - compareLengths), new Buffer(toSequence))
             }
         }else{ //same number of elements
-            const convertedFile = splice(initialData, start, toSequence.length, new Buffer(toSequence))
-            fs.writeFile(filePath, convertedFile, (err) =>{
-                if(err) throw err;
-                console.log(err)
-            })
+            return splice(initialData, start, toSequence.length, new Buffer(toSequence))
     }
 }
 
