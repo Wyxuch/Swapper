@@ -4,4 +4,6 @@ App made to:
 3. Change binary sequence to another also given by user (in Hex)
 4. Overwrite files with changed binary sequence.
 
+Use with caution, changes can't be undone.
+
 App made using Electron
